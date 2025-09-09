@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarun Sai Yerragunta - Java Full Stack Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #000000;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: #1a1a1a;
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info .title {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #ffffff;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border: 3px solid #ffffff;
+        }
+
+        .profile-image i {
+            font-size: 4rem;
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: #1a1a1a;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.05);
+        }
+
+        .section {
+            padding: 3rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: #ffffff;
+            display: block;
+            margin: 1rem auto;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: #333333;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffffff;
+        }
+
+        .skill-category h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #ffffff;
+            color: #000000;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: #333333;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .company {
+            color: #cccccc;
+            font-weight: 500;
+            margin: 0.5rem 0;
+        }
+
+        .duration {
+            color: #999999;
+            font-size: 0.9rem;
+        }
+
+        .responsibilities {
+            list-style: none;
+        }
+
+        .responsibilities li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+            color: #cccccc;
+        }
+
+        .responsibilities li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #333333;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #ffffff;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #555555;
+            color: #ffffff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            background: #cccccc;
+        }
+
+        .footer p {
+            color: #cccccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-info">
+                    <h1>Tarun Sai Yerragunta</h1>
+                    <div class="title">Java Full Stack Developer</div>
+                    <div class="contact-info">
+                        <a href="mailto:tarunyerragunta.1@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            tarunyerragunta.1@gmail.com
+                        </a>
+                        <a href="tel:+15189252982" class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            +1 518-925-2982
+                        </a>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Albany, NY
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <section class="section">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p>Experienced Java Full Stack Developer with 8+ years of expertise in developing enterprise applications across Financial, Healthcare, E-Commerce, and Government domains. Passionate about creating scalable, secure, and high-performance applications using modern technologies and best practices.</p>
+                    <br>
+                    <p>Strong background in full software development lifecycle, Agile methodologies, and microservices architecture. Proven track record of delivering complex solutions and mentoring development teams.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fab fa-java"></i> Backend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java 8/11/17</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Spring MVC</span>
+                            <span class="skill-tag">Spring Security</span>
+                            <span class="skill-tag">Spring Cloud</span>
+                            <span class="skill-tag">Hibernate</span>
+                            <span class="skill-tag">JPA</span>
+                            <span class="skill-tag">Microservices</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fab fa-react"></i> Frontend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">jQuery</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Oracle</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">SQL Server</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cloud"></i> DevOps & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Maven</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">RabbitMQ</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="job-title">Java Full Stack Developer</div>
+                                <div class="company">NYS ITS3 - Albany, NY</div>
+                            </div>
+                            <div class="duration">Current</div>
+                        </div>
+                        <ul class="responsibilities">
+                            <li>Built enterprise applications for NYS government using Java 17 and Spring Boot with microservices architecture</li>
+                            <li>Developed accessible React.js web applications following WCAG 2.1 standards for citizen services</li>
+                            <li>Implemented secure RESTful APIs with OAuth 2.0 and JWT authentication for government systems</li>
+                            <li>Orchestrated containerized applications using Docker and Kubernetes in cloud environments</li>
+                            <li>Led code reviews and mentored junior developers while maintaining coding standards</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="job-title">Java Full Stack Developer</div>
+                                <div class="company">Empower - Denver, CO</div>
+                            </div>
+                            <div class="duration">Previous</div>
+                        </div>
+                        <ul class="responsibilities">
+                            <li>Created financial planning applications handling millions of retirement transactions using Spring Boot</li>
+                            <li>Built responsive React.js interfaces with Bootstrap for enhanced user experience</li>
+                            <li>Secured sensitive financial data using Spring Security with role-based access controls</li>
+                            <li>Integrated Apache Kafka for real-time event-driven architecture and data streaming</li>
+                            <li>Deployed applications on AWS infrastructure with automated CI/CD pipelines</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="job-title">Java Developer</div>
+                                <div class="company">First DataBank - San Francisco, CA</div>
+                            </div>
+                            <div class="duration">Previous</div>
+                        </div>
+                        <ul class="responsibilities">
+                            <li>Developed pharmaceutical data processing systems using Spring Framework and Hibernate</li>
+                            <li>Created web interfaces with JSP and JavaScript for managing clinical drug information</li>
+                            <li>Optimized Oracle database queries and procedures for processing large healthcare datasets</li>
+                            <li>Implemented Spring Batch for daily processing of millions of drug records</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="job-title">Full Stack Developer</div>
+                                <div class="company">Casey's General Store - Ankeny, IA</div>
+                            </div>
+                            <div class="duration">Previous</div>
+                        </div>
+                        <ul class="responsibilities">
+                            <li>Built point-of-sale and inventory systems using Spring MVC and React.js frameworks</li>
+                            <li>Developed real-time inventory tracking with Spring Boot microservices and RabbitMQ</li>
+                            <li>Created single-page applications using React hooks and routing for retail operations</li>
+                            <li>Collaborated in Agile environment with daily standups and sprint retrospectives</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="job-title">Java Developer</div>
+                                <div class="company">Gigstart - Delhi, IN</div>
+                            </div>
+                            <div class="duration">Previous</div>
+                        </div>
+                        <ul class="responsibilities">
+                            <li>Developed web applications using Core Java, Spring MVC, and MySQL in startup environment</li>
+                            <li>Created responsive user interfaces with HTML5, CSS3, and jQuery</li>
+                            <li>Built RESTful services using JAX-RS for third-party integrations</li>
+                            <li>Implemented full SDLC from requirements gathering to deployment using Agile methodology</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-title">
+                            <i class="fas fa-chart-line"></i>
+                            Financial Planning Platform
+                        </div>
+                        <div class="project-description">
+                            Scalable retirement and financial planning application handling millions of transactions with real-time data streaming and secure authentication.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java 11</span>
+                            <span class="tech-tag">Spring Security</span>
+                            <span class="tech-tag">Apache Kafka</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title">
+                            <i class="fas fa-shopping-cart"></i>
+                            Retail Management System
+                        </div>
+                        <div class="project-description">
+                            Point-of-sale and inventory management system with real-time tracking, React.js SPA frontend, and Spring Boot microservices backend.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Spring MVC</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">RabbitMQ</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title">
+                            <i class="fas fa-pills"></i>
+                            Healthcare Data Management
+                        </div>
+                        <div class="project-description">
+                            Pharmaceutical data processing system with batch processing capabilities, handling millions of drug records daily with Spring Batch and Oracle database.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java 8</span>
+                            <span class="tech-tag">Spring Batch</span>
+                            <span class="tech-tag">Hibernate</span>
+                            <span class="tech-tag">Oracle</span>
+                            <span class="tech-tag">JSP/Servlets</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/TARUN-YERRAGUNTA" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tarunsaiyerragunta/" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:tarunyerragunta.1@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>&copy; 2024 Tarun Sai Yerragunta. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
